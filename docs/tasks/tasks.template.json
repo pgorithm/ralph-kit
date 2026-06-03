@@ -1,0 +1,58 @@
+{
+  "release": {
+    "kind": "patch",
+    "baseline_version": "0.1.0",
+    "notes": "Optional hint for batch closure; see docs/project/product-versioning.md"
+  },
+  "agent_instructions": {
+    "before_start": [
+      "Прочитай этот файл, docs/new-agents.md и git log --oneline -20",
+      "Роль оркестратор (/ralph или run_ralph_orchestrator): ready-задачи, 1..K без конфликтов, atomic claim на каждую, затем K параллельных воркеров (отдельные сессии/Task, одна задача на воркера); Test Coordinator и Reviewer по протоколу.",
+      "Роль воркер: ровно одна задача в work in progress с твоим assignee; не бери вторую из очереди сам.",
+      "Проверь, что все dependencies релевантной задачи имеют статус done"
+    ],
+    "during_work": [
+      "Работай только над выбранной задачей",
+      "Перед стартом задачи переведи status в work in progress и выстави assignee, claimed_at, lease_until (или orchestrator делает это при claim)",
+      "После реализации подготовь handoff; orchestrator переводит в needs_review и добавляет artifacts",
+      "Воркер: не гоняй полный suite — только {{LINT_CMD}} и узкие тесты по своей задаче/diff. Полный охват tests/ — зона Test Coordinator.",
+      "Задача без изменения кода (только docs/, legal, очередь/прогресс без правок исходников приложения, tests/, скриптов): полный test runner не нужен — только {{LINT_CMD}} и test_steps; в description или AC явно укажи «без изменений кода»."
+    ],
+    "before_finish": [
+      "Воркер перед handoff: {{LINT_CMD}} и только узкие тесты по затронутой зоне (не заменяют полный прогон дерева tests/).",
+      "Полный прогон tests/ для test_verdict ведёт Test Coordinator: предпочитай {{TEST_TWO_PHASE_CMD}} (обе фазы зелёные); serial {{TEST_FULL_CMD}} — fallback. В artifacts зафиксируй стратегию (two_phase | serial | sharded) и точные команды — см. run_ralph_orchestrator.md.",
+      "Исключение: задача без изменения кода — Test Coordinator и reviewer не требуют полного test runner; достаточно lint + test_steps (стратегия lint_only).",
+      "Выполни ВСЕ test_steps из задачи",
+      "Меняй status на done только после подтверждения reviewer (orchestrator mode)"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "category": "functional",
+      "priority": "high",
+      "description": "Пример задачи — замените из PRD / currentProblems",
+      "acceptance_criteria": [
+        "Критерий приёмки 1 проверяем",
+        "Критерий приёмки 2 проверяем"
+      ],
+      "test_steps": [
+        "Шаг 1: действие",
+        "Шаг 2: проверка",
+        "Шаг 3: ожидаемый результат"
+      ],
+      "dependencies": [],
+      "status": "pending",
+      "assignee": null,
+      "claimed_at": null,
+      "lease_until": null,
+      "review_required": true,
+      "status_reason": null,
+      "test_verdict": null,
+      "test_owner": null,
+      "test_started_at": null,
+      "test_finished_at": null,
+      "artifacts": []
+    }
+  ]
+}

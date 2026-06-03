@@ -1,0 +1,49 @@
+{
+  "agent_instructions": {
+    "before_start": [
+      "Read {{PRD_PATH}} (full doc or sections named in the task)",
+      "Read docs/new-agents.md",
+      "Orchestrator: atomic claim per run_ralph_orchestrator.md",
+      "Worker: one PRD-REFACTOR in work in progress; highest priority first",
+      "Verify dependencies are done"
+    ],
+    "during_work": [
+      "Edit only {{PRD_PATH}} — no application code",
+      "Merge sections_to_merge into target_section; dedupe conflicting requirements",
+      "Priority: implementation > progress.md > newer PRD text",
+      "Update cross-links and table of contents"
+    ],
+    "before_finish": [
+      "Run all test_steps (manual PRD review)",
+      "Update PRD change history section if present",
+      "Optional: one-line gotcha in docs/new-agents.md per admission rules"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "PRD-REFACTOR-001",
+      "category": "documentation",
+      "priority": "high",
+      "description": "Example: merge backlog subsection into main PRD section",
+      "target_section": "3.1",
+      "sections_to_merge": ["3.5.1"],
+      "acceptance_criteria": [
+        "Target section contains merged canonical requirements",
+        "Section 3.5 no longer duplicates the same behavior",
+        "Cross-links resolve"
+      ],
+      "test_steps": [
+        "Search PRD for duplicate contradictory statements",
+        "Verify table of contents matches headings"
+      ],
+      "dependencies": [],
+      "status": "pending",
+      "assignee": null,
+      "claimed_at": null,
+      "lease_until": null,
+      "review_required": true,
+      "status_reason": null,
+      "artifacts": []
+    }
+  ]
+}

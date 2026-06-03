@@ -1,0 +1,11 @@
+---
+description: Agent must read docs/new-agents.md and curate Known Gotchas per admission rules
+alwaysApply: true
+---
+
+# Agent instructions ({{PROJECT_NAME}})
+
+- Before any task, read [docs/new-agents.md](docs/new-agents.md) **in full** — all sections, not only Known Gotchas.
+- This file is the **single curated** gotcha list; do not duplicate it in README or parallel root instruction files.
+- Add to **Known Gotchas** only when all admission checklist items in new-agents.md are satisfied. When unsure — **do not add**.
+- One line per gotcha; link to canonical docs instead of copying them.

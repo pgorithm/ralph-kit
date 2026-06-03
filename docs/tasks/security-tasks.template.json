@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "cycle": 1,
+    "generation_mode": "initial",
+    "repeat_focus": "fix_validation",
+    "generated_at": "2026-01-01T00:00:00Z",
+    "source": "{{VULN_CATALOG_PATH}}",
+    "prd_alignment": "{{PRD_PATH}}",
+    "delivery_progress": "docs/tasks/progress.md",
+    "previous_progress": "docs/tasks/security-progress.md"
+  },
+  "agent_instructions": {
+    "before_start": [
+      "Прочитай docs/new-agents.md (правила проекта)",
+      "При необходимости сверки security-требований: {{PRD_PATH}}",
+      "Прочитай этот файл и git log --oneline -10",
+      "Оркестратор: .cursor/commands/run_ralph_orchestrator.md — 1..K ready-задач, atomic claim, K воркер-сессий",
+      "Соло-воркер: одна задача pending (или work in progress); наивысший приоритет среди доступных",
+      "Все dependencies — status done"
+    ],
+    "during_work": [
+      "Работай только над выбранной SEC-задачей",
+      "PoC и автотесты — в tests/security/",
+      "НЕ модифицируй production-код приложения",
+      "НЕ выполняй деструктивных действий: DROP TABLE, DELETE без WHERE, rm -rf, перезапись .env реальными секретами",
+      "Все скрипты — идемпотентные и безопасны для повторного запуска"
+    ],
+    "before_finish": [
+      "Выполни ВСЕ test_steps из задачи",
+      "При exploitable/partially — pytest в tests/security/, FAIL пока уязвимость открыта, PASS после фикса",
+      "Обнови {{SECURITY_TASKS_PATH}}: status → done (не удаляй и не редактируй другие задачи)",
+      "Запиши результат в docs/tasks/security-progress.md по шаблону kit",
+      "При exploitable/partially — допиши блок в конец docs/tasks/currentProblems.md (шаблон: run_ralph_security.md)",
+      "ЗАПРЕЩЕНО удалять или редактировать задачи в очереди — только status"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "SEC-001",
+      "task_type": "exploit",
+      "source_sec_ids": [],
+      "vuln_ref": "1.1",
+      "category": "auth",
+      "priority": "high",
+      "title": "Example security check",
+      "description": "Replace with a concrete scenario from {{VULN_CATALOG_PATH}}",
+      "attack_vector": "Describe exact abuse path to validate",
+      "target_files": [
+        "src/api/example.py"
+      ],
+      "acceptance_criteria": [
+        "Изучен код target_files, описан путь эксплуатации",
+        "Создан tests/security/sec_001_exploit.py с PoC",
+        "Скрипт запущен, вердикт: exploitable | not_exploitable | partially | config_dependent",
+        "При exploitable/partially: tests/security/test_sec_001.py",
+        "Запись в security-progress.md",
+        "При exploitable/partially: запись в конец currentProblems.md"
+      ],
+      "test_steps": [
+        "Шаг 1: изучить target_files",
+        "Шаг 2: написать и запустить PoC",
+        "Шаг 3: при подтверждении — автотест",
+        "Шаг 4: security-progress.md",
+        "Шаг 5: при exploitable/partially — currentProblems.md",
+        "Шаг 6: не было изменений в production-коде"
+      ],
+      "constraints": [
+        "Не модифицировать production-код",
+        "Не удалять данные из БД",
+        "Без реальных внешних API — мокать при необходимости"
+      ],
+      "dependencies": [],
+      "status": "pending"
+    }
+  ]
+}
