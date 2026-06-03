@@ -45,7 +45,7 @@ If claim fails due to concurrent update, re-read queue and pick another task.
 ## Parallel Worker Launch (K>1)
 
 - After claiming **K** tasks, start **K separate worker sessions** (e.g. Task tool with `run_in_background=true`, one task per session). Do not serialize the whole batch in one chat when K>1 is allowed.
-- Each worker prompt: task id, `assignee`, pointers to `orchestrator-worker` + `run_ralph_orchestrator.md`.
+- Each worker prompt: task id, `assignee`, pointers to `orchestrator-worker` + `.cursor/commands/run_ralph_orchestrator.md`.
 - Full test tree ownership: **Test Coordinator** only. Workers: narrow tests. **«без изменений кода»** → `lint_only`.
 - Wait for **every** worker in the batch before TC or Reviewer.
 - After each worker-run: verify worker did **not** edit `docs/tasks/tasks.json` or `docs/tasks/progress.md`.

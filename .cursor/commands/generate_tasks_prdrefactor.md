@@ -40,8 +40,8 @@
 Скопируй структуру из шаблона; укажи:
 
 - редактировать **только** `{{PRD_PATH}}`;
-- при оркестраторном режиме — atomic claim по `run_ralph_orchestrator.md`;
-- в solo — `run_ralph_prdrefactor.md`.
+- при оркестраторном режиме — atomic claim по `.cursor/commands/run_ralph_orchestrator.md`;
+- в solo — `.cursor/commands/run_ralph_prdrefactor.md`.
 
 ## После генерации
 

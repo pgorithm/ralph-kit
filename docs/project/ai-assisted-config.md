@@ -28,4 +28,4 @@
 ## Notes
 
 - Replace all `{{...}}` placeholders; none should remain after adapt.
-- Domain-specific skills and hooks (env parity, legal, …) — copy from reference repo per [MANIFEST.md](../../MANIFEST.md) «Не входит в kit»; do not expect them in the base kit copy.
+- Domain-specific skills and hooks (env parity, legal, …) — copy from a reference repo when needed; do not expect them in the base kit copy.

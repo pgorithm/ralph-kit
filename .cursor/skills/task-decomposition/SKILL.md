@@ -7,7 +7,7 @@ description: Creates and decomposes agent-executable work items into JSON task q
 
 Universal skill for **creating and splitting** agent tasks. Discover local paths first, then apply rules below.
 
-PRD-driven batch generation: `.cursor/commands/generate_tasks.md`. Greenfield first queue: `init_tasks.md`.
+PRD-driven batch generation: `.cursor/commands/generate_tasks.md`. Greenfield first queue: `.cursor/commands/init_tasks.md`.
 
 ## 1. Discover artifacts
 
@@ -17,7 +17,7 @@ PRD-driven batch generation: `.cursor/commands/generate_tasks.md`. Greenfield fi
 | Template | `docs/tasks/tasks.template.json` | Required template fields |
 | History | `docs/tasks/progress.md` | Continue `TASK-NNN` |
 | Agent rules | `agent_instructions` in template, `docs/new-agents.md` | Do not truncate |
-| Requirements | `{{PRD_PATH}}`, `currentProblems.md`, user request | AC source |
+| Requirements | `{{PRD_PATH}}`, `docs/tasks/currentProblems.md`, user request | AC source |
 | Versioning | `docs/project/product-versioning.md`, `{{VERSION_FILE}}` | `release.kind` |
 
 Copy **`agent_instructions` from template verbatim** (with project placeholders after adapt). Do not invent a shortened block.
@@ -76,7 +76,7 @@ Categories: `infrastructure` | `functional` | `ui` | `integration` | `security`
 - [ ] No scope overlap within batch
 - [ ] Refactor boundaries explicit
 - [ ] No-code tasks marked
-- [ ] `agent_instructions` copied from `tasks.template.json`
+- [ ] `agent_instructions` copied from `docs/tasks/tasks.template.json`
 
 ## 7. Anti-patterns
 
@@ -92,4 +92,4 @@ Categories: `infrastructure` | `functional` | `ui` | `integration` | `security`
 
 Report: ID range, `release.kind`, table (id | priority | category | description | deps), excluded scope, suggested start order.
 
-Optional deep reference: copy `task-decomposition/reference.md` from a mature reference repo after adapt (not shipped in kit — see MANIFEST «Не входит в kit»).
+Optional deep reference: copy `task-decomposition/reference.md` from a mature reference repo after adapt (not shipped in base kit).

@@ -6,7 +6,7 @@
 
 - Используй `.cursor/commands/run_ralph.md`
 - Когда нужен один агент end-to-end без ролей orchestrator/test-coordinator/reviewer
-- Полный контур проверки выполняет сам агент (согласно правилам `run_ralph.md`)
+- Полный контур проверки выполняет сам агент (согласно правилам `.cursor/commands/run_ralph.md`)
 
 ## Product queue: orchestrator
 
@@ -32,4 +32,4 @@
 
 - Генерация: `.cursor/commands/generate_tasks_prdrefactor.md` → `docs/tasks/prd_refactor_tasks.json`
 - Solo: `.cursor/commands/run_ralph_prdrefactor.md`
-- Orchestrator: тот же `run_ralph_orchestrator.md` с PRD-очередью
+- Orchestrator: тот же `.cursor/commands/run_ralph_orchestrator.md` с PRD-очередью

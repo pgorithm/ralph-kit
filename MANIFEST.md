@@ -50,17 +50,17 @@
 
 | Файл / каталог | Назначение |
 |----------------|------------|
-| `new-agents.md` | Память агента (gotchas, build, риски) |
+| `new-agents.md` | Долгосрочная память агента (gotchas, build, риски) |
 | `PRD-stub.md` | Ориентир структуры PRD |
 | `project/ai-assisted-config.md` | Канон путей и команд (после adapt) |
 | `project/product-versioning.md` | Semver closure батча |
 | `security/vulnerability-categories.md` | Каталог для security-очереди |
-| `tasks/tasks.template.json` | Шаблон очереди TASK-* (v2-поля оркестрации) |
+| `tasks/tasks.template.json` | Шаблон очереди TASK-* |
 | `tasks/security-tasks.template.json` | Шаблон SEC-* |
 | `tasks/prd_refactor_tasks.template.json` | Шаблон PRD-refactor |
 | `tasks/progress.md` | Журнал выполненного |
 | `tasks/security-progress.md` | Журнал security-волн |
-| `tasks/currentProblems.md` | Подтверждённые находки → product |
+| `tasks/currentProblems.md` | Подтверждённые находки → product, ТЗ, баги |
 
 ## После копирования (создаёт агент / команды, не в kit)
 
@@ -70,20 +70,7 @@
 | `docs/tasks/tasks.json` | `init_tasks` / `generate_tasks` |
 | `docs/tasks/security-tasks.json` | `generate_tasks_security` |
 | `docs/tasks/prd_refactor_tasks.json` | `generate_tasks_prdrefactor` |
-| `docs/tasks/done/` | Closure батча |
-
-## Не входит в kit (копировать из reference при adapt)
-
-Упоминаются в командах или reference-репозитории; **не создавать автоматически** при аудите kit:
-
-| Артефакт | Назначение |
-|----------|------------|
-| `docs/RALPH-ORCHESTRATION-QUICKSTART.md` | Краткий цикл orchestrator (дублирует `run_ralph_orchestrator.md`) |
-| `docs/tasks/tasks.v2.template.json` | Legacy-имя; в kit канон — `tasks.template.json` |
-| `.cursor/skills/env-dotenv-parity/` | Паритет `.env` / `.env.example` |
-| `.cursor/hooks.json`, `hooks.json.example`, `.cursor/hooks/sync_env_parity.py`, `scripts/sync_env_parity.py` | Hook env parity |
-| `.cursor/skills/task-decomposition/reference.md` | Расширенный справочник полей JSON |
-| `.cursor/skills/project-architect/scripts/validate-architecture.sh` | Проектный architecture guard |
+| `docs/tasks/done/` | Архив выполненных батчей задач |
 
 ## Плейсхолдеры `{{...}}`
 

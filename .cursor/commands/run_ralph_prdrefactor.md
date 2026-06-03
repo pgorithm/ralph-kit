@@ -44,4 +44,4 @@
 
 ## Orchestrator
 
-Для K>1 используй `run_ralph_orchestrator.md` с очередью `prd_refactor_tasks.json` и skills orchestrator-*.
+Для K>1 используй `.cursor/commands/run_ralph_orchestrator.md` с очередью `docs/tasks/prd_refactor_tasks.json` и skills orchestrator-*.

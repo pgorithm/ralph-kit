@@ -12,7 +12,7 @@
    - `.cursor/skills/orchestrator-test-coordinator/SKILL.md`
    - `.cursor/skills/orchestrator-reviewer/SKILL.md`
 
-Этот файл — **канонический quickstart** orchestrator. Опционально в reference-репозитории есть отдельный `docs/RALPH-ORCHESTRATION-QUICKSTART.md` (в базовый kit не входит).
+Этот файл — **канонический quickstart** orchestrator. Расширенный quickstart в reference-репозитории в базовый kit не входит.
 
 При конфликте приоритет у role-skill и этого файла.
 

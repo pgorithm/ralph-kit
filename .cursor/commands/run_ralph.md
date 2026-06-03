@@ -19,7 +19,7 @@
 ## Цикл задачи
 
 1. Объяви TASK-XXX
-2. `work in progress`
+2. `status` задачи = `work in progress`
 3. Реализуй AC (сверяй с `{{PRD_PATH}}`)
 4. Проверки **до** `done`:
    - `{{LINT_CMD}}`

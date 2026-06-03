@@ -54,7 +54,6 @@
 Пройди по файлам starter-kit и замени все `{{...}}` (в т.ч. `VERSION_FILE`, `BENCHMARK_*`) в:
 
 - `docs/new-agents.md`
-- `docs/RALPH-ORCHESTRATION-QUICKSTART.md` — только если копируете из reference (в kit не входит; канон — `run_ralph_orchestrator.md`)
 - `docs/tasks/progress.md`
 - `docs/tasks/tasks.template.json` (в `agent_instructions`)
 - `.cursor/rules/new-agents-gotchas.mdc`
@@ -66,7 +65,7 @@
 
 Добавь **проектные** bullets (не дублируя README):
 
-- как поднять проект локально (1–3 строки + ссылка на README/GettingStarted);
+- как поднять проект локально (1–3 строки + ссылка на README);
 - команда миграций / install;
 - как запустить админку (если есть);
 - 2–5 **специфичных** рисков из PRD (auth, payments, external API, rate limits).
@@ -77,26 +76,20 @@
 
 | Команда | Действие |
 |---------|----------|
-| `generate_tasks.md` | Пути к PRD, currentProblems, progress; формат TASK-ID |
-| `update_prd.md` | `{{PRD_PATH}}`, `{{CURRENT_WORK_SECTION}}` |
-| `run_ralph.md` / `run_ralph_orchestrator.md` | Точные lint/test команды; наличие/отсутствие two-phase |
-| `generate_tasks_security.md` / `run_ralph_security.md` | Security-поток, пути к каталогу уязвимостей и progress |
-| `generate_tasks_prdrefactor.md` / `run_ralph_prdrefactor.md` | PRD refactor queue |
-| `run_benchmark.md` | Команды и пути `docs/benchmarks/` |
-| `ralph.md` | Без изменений, если пути стандартные |
+| `.cursor/commands/generate_tasks.md` | Пути к PRD, currentProblems, progress; формат TASK-ID |
+| `.cursor/commands/update_prd.md` | `{{PRD_PATH}}`, `{{CURRENT_WORK_SECTION}}` |
+| `.cursor/commands/run_ralph.md` / `run_ralph_orchestrator.md` | Точные lint/test команды; наличие/отсутствие two-phase |
+| `.cursor/commands/generate_tasks_security.md` / `run_ralph_security.md` | Security-поток, пути к каталогу уязвимостей и progress |
+| `.cursor/commands/generate_tasks_prdrefactor.md` / `run_ralph_prdrefactor.md` | PRD refactor queue |
+| `.cursor/commands/run_benchmark.md` | Команды и пути `docs/benchmarks/` (создаются при прогоне, в kit нет) |
+| `.cursor/commands/ralph.md` | Без изменений, если пути стандартные |
 
-### 5. Hooks (опционально)
-
-- Реализуй или скопируй `scripts/sync_env_parity.py`
-- Активируй `.cursor/hooks.json` из `hooks.json.example`
-- Добавь в `docs/new-agents.md` одну строку про env parity, если hook включён
-
-### 6. Rules
+### 5. Rules
 
 - Обнови ссылки на `docs/new-agents.md` и имя проекта в `new-agents-gotchas.mdc`.
 - `project-wide-orchestration.mdc` — оставь.
 
-### 7. Skills
+### 6. Skills
 
 - Стартовые stubs уже в `.cursor/skills/` — обнови плейсхолдеры команд.
 - Переименуй `senior-engineer` → `senior-python-engineer` (и т.д.), если нужна языковая специфика.

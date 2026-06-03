@@ -2,6 +2,8 @@
 
 Универсальный шаблон **Cursor rules, commands и skills** для AI-assisted engineering: PRD → очередь задач JSON → исполнение solo или через RALPH-orchestrator (dispatcher, workers, test coordinator, reviewer).
 
+Легко адаптируется под любую другую IDE.
+
 Формулировки обобщены: стек, пути и команды lint/test подставляются командой **`adapt_project_cursor`**.
 
 **Связанные материалы:** после копирования kit в целевой репозиторий — `docs/PRD.md` и `docs/new-agents.md`. Если kit лежит в monorepo с докладом, опционально см. `docs/ai-assisted-talk/talk-outline-30min.md` (в отдельный публичный git kit не входит).
@@ -14,7 +16,7 @@ ralph-kit/
 ├── .cursor/
 │   ├── rules/                 always-apply (new-agents, project-wide orchestration)
 │   ├── commands/              PRD, tasks, RALPH, security, PRD-refactor, benchmark
-│   └── skills/                оркестрация, декомпозиция, QA, architect, security audit, …
+│   └── skills/                оркестрация, декомпозиция …
 └── docs/
     ├── new-agents.md
     ├── PRD-stub.md
@@ -36,11 +38,59 @@ ralph-kit/
 
 | Шаг | Команда / действие | Результат |
 |-----|-------------------|-----------|
-| 1 | Скопировать kit в корень репозитория ([MANIFEST.md](MANIFEST.md)) | `.cursor/`, `docs/` шаблоны |
-| 2 | **`init_prd`** | `docs/PRD.md` (диалог greenfield) |
-| 3 | **`adapt_project_cursor`** | `docs/project/ai-assisted-config.md`, без `{{...}}`, проектные секции в `new-agents.md` |
-| 4 | **`init_tasks`** *или* **`generate_tasks`** | `docs/tasks/tasks.json` |
-| 5 | **`ralph`** → solo **`run_ralph`** или **`run_ralph_orchestrator`** | Закрытие TASK с gates и progress |
+| 1 | Скопировать kit в корень репозитория (см. [MANIFEST.md](MANIFEST.md)) | `.cursor/`, `docs/` шаблоны |
+| 2 | Выполнить **`/init_prd`** | Будет создан `docs/PRD.md` |
+| 3 | Выполнить **`/adapt_project_cursor`** | `docs/project/ai-assisted-config.md`, без `{{...}}`, проектные секции в `new-agents.md` |
+| 4 | Выполнить **`/init_tasks`** *или* **`generate_tasks`** | Будет создан батч задач `docs/tasks/tasks.json` |
+| 5 | Выполнять **`/**ralph`** → solo **`run_ralph`** или **`run_ralph_orchestrator`** до закрытия батча задач | Закрытие TASK с gates и progress |
+
+### Что делать после
+
+После первичной настройки работа идёт **итерациями**: накопили вход → обновили PRD → сгенерировали очередь → прогнали RALPH → повторили.
+
+#### Основной цикл (фичи, баги, доработки)
+
+| # | Команда / действие | Зачем |
+|---|-------------------|--------|
+| 1 | Дописать в [docs/tasks/currentProblems.md](docs/tasks/currentProblems.md) баги, идеи, полные ТЗ | Единый вход для всего, что ещё не в PRD |
+| 2 | **`/update_prd`** | Перенести пункты из `currentProblems` в `docs/PRD.md` |
+| 3 | **`/generate_tasks`** | Собрать новый батч `docs/tasks/tasks.json` из PRD + `currentProblems` |
+| 4 | **`/ralph`** → **`run_ralph`** (solo) или **`run_ralph_orchestrator`** (параллель) | Закрыть все TASK в батче (lint, tests, reviewer, `progress.md`, `done/`) |
+| 5 | Повторить с шага 1 | Следующая порция работы |
+
+Solo vs orchestrator — см. [ralph.md](.cursor/commands/ralph.md). Версию продукта bump'айте только после **полного** закрытия батча — [product-versioning.md](docs/project/product-versioning.md).
+
+#### Поиск и устранение уязвимостей
+
+| # | Команда / действие | Зачем |
+|---|-------------------|--------|
+| 1 | Заполнить [vulnerability-categories.md](docs/security/vulnerability-categories.md), самостоятельно или с ИИ | Чеклист категорий для аудита |
+| 2 | **`/generate_tasks_security`** | Очередь `docs/tasks/security-tasks.json` (SEC-*) |
+| 3 | **`/run_ralph_security`** | Аудит по security-очереди |
+| 4 | Подтверждённые находки попадают в **`currentProblems.md`** | Фиксация как продуктовых задач |
+| 5 | **`/update_prd`** → **`/generate_tasks`** → **`/run_ralph`** (или orchestrator) | Исправления через product-батч |
+| 6 | Повторить с шага 2 | Регулярный security-цикл |
+
+Подробнее — раздел [Security-слой](#security-слой) ниже.
+
+#### Гигиена и оптимизация PRD
+
+Когда PRD разросся:
+
+| # | Команда / действие | Зачем |
+|---|-------------------|--------|
+| 1 | **`/generate_tasks_prdrefactor`** | Очередь `docs/tasks/prd_refactor_tasks.json` |
+| 2 | **`/run_ralph_prdrefactor`** *или* **`/run_ralph_orchestrator`** с PRD-очередью | Закрыть PRD-TASK |
+| 3 | **`/update_prd`** / **`/generate_tasks`** → product RALPH | Вернуться к обычному циклу на обновлённом PRD |
+
+#### Прочие потоки
+
+| Цель | Генерация / вход | Исполнение |
+|------|------------------|------------|
+| Пересмотреть память агентов | — | **`/refactor_new_agents`** (по [new-agents.md](docs/new-agents.md)) |
+| Производительность | TASK вручную или **`/generate_tasks`** | **`/run_benchmark`** |
+
+Команда-роутер всех режимов и путей очередей — **`/ralph`**.
 
 ## Команды Cursor
 

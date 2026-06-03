@@ -198,7 +198,7 @@
 |-----|-------------------|
 | Генерация очереди | этот файл → `{{SECURITY_TASKS_PATH}}` |
 | Исполнение аудита | `.cursor/commands/run_ralph_security.md` |
-| Очередь исправлений | `update_prd` → `generate_tasks.md` → `run_ralph` |
+| Очередь исправлений | `update_prd` → `.cursor/commands/generate_tasks.md` → `run_ralph` |
 | Шаблон прогресса | `docs/tasks/security-progress.md` |
 | Каталог векторов | `{{VULN_CATALOG_PATH}}` |
 
